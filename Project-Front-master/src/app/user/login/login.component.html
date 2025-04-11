@@ -1,0 +1,12 @@
+<div>
+  <h2>User Login</h2>
+  <form (ngSubmit)="onLogin()">
+    <input type="text" name="name" [(ngModel)]="username" placeholder="Enter your username" required />
+    <input type="password" name="password" [(ngModel)]="password" placeholder="Enter your password" required />
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+ <!-- Back Button -->
+ <button class="btn-back" routerLink="/">BACK TO HOME</button>
+

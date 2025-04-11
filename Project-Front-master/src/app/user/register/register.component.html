@@ -1,0 +1,12 @@
+<div>
+  <h2>Register User</h2>
+  <form (ngSubmit)="onRegister()">
+    <input type="text" name="name" [(ngModel)]="username" placeholder="Enter your name" required />
+    <input type="email" name="email" [(ngModel)]="email" placeholder="Enter your email" required />
+    <input type="password" name="password"[(ngModel)]="password" placeholder="Enter your password" required />
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+ <!-- Back Button -->
+ <button class="btn-back" routerLink="/">BACK TO HOME</button>

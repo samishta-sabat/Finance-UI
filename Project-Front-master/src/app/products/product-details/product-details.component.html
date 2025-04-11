@@ -1,0 +1,8 @@
+<p>product-details works!</p>
+<h2>Product Details</h2>
+<div *ngIf="product">
+  <h3>{{ product.name }}</h3>
+  <p>{{ product.description }}</p>
+  <p><strong>Price:</strong> ₹{{ product.price }}</p>
+  <button [routerLink]="['/products', product.id, 'buy']">Buy Now</button>
+</div>

@@ -1,0 +1,12 @@
+<div class="login-page">
+  <h2>Admin Login</h2>
+  <!-- Bind ngSubmit to the login method -->
+  <form (ngSubmit)="login()">
+    <input type="text" placeholder="Username" [(ngModel)]="adminUsername" name="adminUsername" required />
+    <input type="password" placeholder="Password" [(ngModel)]="adminPassword" name="adminPassword" required />
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Back Button -->
+  <button class="btn-back" routerLink="/">BACK TO HOME</button>
+</div>
