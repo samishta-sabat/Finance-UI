@@ -1,12 +1,40 @@
-<div>
-  <h2>User Login</h2>
-  <form (ngSubmit)="onLogin()">
-    <input type="text" name="name" [(ngModel)]="username" placeholder="Enter your username" required />
-    <input type="password" name="password" [(ngModel)]="password" placeholder="Enter your password" required />
-    <button type="submit">Login</button>
-  </form>
+<div class="login-container">
+  <div class="login-card">
+    <h2>User Login</h2>
+    <form (ngSubmit)="loginUser()">
+      <div class="input-field">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          id="username"
+          required
+          placeholder="Enter your username"
+        />
+      </div>
+ 
+      <div class="input-field">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          id="password"
+          required
+          placeholder="Enter your password"
+        />
+      </div>
+ 
+      <button type="submit" class="login-btn">Login</button>
+ 
+      <div class="error-message" *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </form>
+  </div>
 </div>
 
- <!-- Back Button -->
- <button class="btn-back" routerLink="/">BACK TO HOME</button>
 
+<!-- Back Button -->
+<button class="btn-back" routerLink="/">BACK TO HOME</button>

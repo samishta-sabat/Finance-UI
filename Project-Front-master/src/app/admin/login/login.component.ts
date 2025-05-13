@@ -1,43 +1,38 @@
-// // login.component.ts
-// import { Component } from '@angular/core';
-// import { Router } from '@angular/router';
-
-// @Component({
-//   selector: 'app-login',
-//   standalone:false,
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css']
-// })
-// export class AdminLoginComponent {
-//   adminUsername: string = '';
-//   adminPassword: string = '';
-
-//   constructor(private router: Router) {}
-
-//   onLogin() {
-//     // Simulating admin login process (You can connect it to actual authentication logic)
-//     if (this.adminUsername === 'admin' && this.adminPassword === 'password') {
-//       this.router.navigate(['/admin-dashboard']);
-//     } else {
-//       alert('Invalid credentials');
-//     }
-//   }
-// }
 
 import { Component } from '@angular/core';
+import { AdminAuthService, AdminLoginRequest } from '../services/admin-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-login',
   standalone:false,
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class AdminLoginComponent {
-  adminUsername: string = '';
-  adminPassword: string = '';
-
-  login() {
-    console.log('Logging in with:', this.adminUsername, this.adminPassword);
-    // Add actual logic here
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
+ 
+  constructor(private adminAuthService: AdminAuthService, 
+    private router: Router
+  ) {}
+ 
+  loginAdmin() {
+    const credentials: AdminLoginRequest = {
+      username: this.username,
+      password: this.password
+    };
+ 
+    this.adminAuthService.loginAdmin(credentials).subscribe({
+      next: (response) => {
+        localStorage.setItem('username', response.username);
+        this.router.navigate(['/admin/dashboard']);
+      },
+      error: (error) => {
+        this.errorMessage = 'Invalid Admin credentials.';
+      }
+    });
   }
 }
 

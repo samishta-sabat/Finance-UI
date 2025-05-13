@@ -4,17 +4,23 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   standalone:false,
-  template: `<h2>Admin Dashboard</h2>`
+  templateUrl:  './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  constructor(private router: Router) {}
-
-  // Handle logout functionality
-  onLogout() {
-    // Log the logout action to the console
-    console.log('Admin logged out');
-
+  username: string | null = '';
+ 
+  constructor(private router: Router) {
+    this.username = localStorage.getItem('username');
+  }
+ 
+  logout() {
+    console.log("Admin logged out")
+    localStorage.removeItem('sername');
     this.router.navigate(['/']);
-}
+  }
  }
 
+
+
+//  DashboardComponent

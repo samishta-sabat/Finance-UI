@@ -5,9 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 const routes: Routes = [
-  { path: 'login', component: AdminLoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'home', component: AdminHomeComponent },
+  { path: 'admin/login', component: AdminLoginComponent },
+  { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/admin-home', component: AdminHomeComponent },
 ];
 
 @NgModule({

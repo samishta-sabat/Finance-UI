@@ -1,7 +1,20 @@
-<!-- dashboard.component.html -->
-<div class="admin-dashboard">
-    <h2>Admin Dashboard</h2>
-    <p>Here you can manage user verification, transactions, etc.</p>
-  </div>
-   <!-- Back Button -->
-   <button (click)="onLogout()">Logout</button>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+    <div class="admin-info">
+      <span>Hi, {{ username }}</span>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </header>
+ 
+  <main class="dashboard-main">
+    <p>Welcome to the admin dashboard. You can manage users, verify documents, and activate EMI cards here.</p>
+ 
+    <!-- Placeholder cards for features -->
+    <div class="dashboard-cards">
+      <div class="card">Verify Users</div>
+      <div class="card">Activate Cards</div>
+      <div class="card">Transaction Overview</div>
+    </div>
+  </main>
+</div>

@@ -1,7 +1,25 @@
-<div class="dashboard">
-  <h2>Welcome to User Dashboard</h2>
-  <p>View your transactions and product purchases.</p>
-  <button (click)="onLogout()">Logout</button>
+<div class="dashboard-header">
+  <div>
+    <h2>Welcome to EMI Card Dashboard</h2>
+  </div>
+  <div class="user-info">
+    <span>HI, {{ username }}</span>
+    <button (click)="logout()">LOGOUT</button>
+  </div>
 </div>
- <!-- Back Button -->
- <button class="btn-back" routerLink="/">BACK TO HOME</button>
+
+<div class="dashboard-body">
+  <!-- <p>This is your personal space. Here, you’ll see your EMI card, product purchases, and transaction history.</p> -->
+  <nav class="navbar">
+    <div class="navbar-logo">EMI Card System</div>
+    <ul class="navbar-links">
+      <li><a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a></li>
+      <li><a routerLink="/user/products" routerLinkActive="active">Products</a></li>
+      <li><button (click)="logout()">Logout</button></li>
+    </ul>
+  </nav>
+
+  <div class="dashboard-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

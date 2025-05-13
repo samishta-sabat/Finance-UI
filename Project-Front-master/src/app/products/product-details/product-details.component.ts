@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-product-details',
   standalone: false,
@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
-product: any;
+  product: any;
 
 }

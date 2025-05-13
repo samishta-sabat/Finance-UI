@@ -1,18 +1,50 @@
-.dashboard {
-    padding: 20px;
-  }
-  
-  .dashboard button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .dashboard button:hover {
-    background-color: #0056b3;
-  }
-  
+/* Background for whole dashboard */
+:host {
+  display: block;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a90e2;
+  color: white;
+  padding: 15px 30px;
+  border-bottom: 4px solid #357ABD;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Greeting text */
+.user-info span {
+  font-size: 18px;
+  font-weight: bold;
+}
+ 
+/* Logout button */
+.user-info button {
+  padding: 8px 14px;
+  background-color: white;
+  color: #4a90e2;
+  border: 2px solid white;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+ 
+.user-info button:hover {
+  background-color: #357ABD;
+  color: white;
+  border-color: #fff;
+}
+ 
+/* Main dashboard body */
+.dashboard-body {
+  padding: 30px;
+  font-size: 16px;
+  color: #333;
+}

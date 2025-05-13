@@ -1,5 +1,5 @@
 // dashboard.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
@@ -7,15 +7,22 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class UserDashboardComponent {
+export class UserDashboardComponent implements OnInit {
+  username: string | null = '';
+
   constructor(private router: Router) {}
 
+  ngOnInit(){
+    this.username = localStorage.getItem('username');
+
+  }
+
   // Handle logout functionality
-  onLogout() {
+  logout() {
     // Log the logout action to the console
     console.log('User logged out');
-
-    this.router.navigate(['/']);
+    localStorage.removeItem('username');
+    this.router.navigate(['/user/login']);
 }
 
 }

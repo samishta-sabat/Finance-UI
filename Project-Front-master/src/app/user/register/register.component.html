@@ -1,12 +1,166 @@
-<div>
-  <h2>Register User</h2>
-  <form (ngSubmit)="onRegister()">
-    <input type="text" name="name" [(ngModel)]="username" placeholder="Enter your name" required />
-    <input type="email" name="email" [(ngModel)]="email" placeholder="Enter your email" required />
-    <input type="password" name="password"[(ngModel)]="password" placeholder="Enter your password" required />
-    <button type="submit">Register</button>
-  </form>
+<div class="register-container">
+        <h2>Register</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+       
+        <!-- Name -->
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" formControlName="name" placeholder="Name" />
+          <small *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')">
+            Name is required.
+          </small>
+        </div>
+  
+         <!-- DOB  -->
+         <div>
+                <label for="dob">Date Of Birth:</label>
+                <input id="dob" type="date" formControlName="dob" max="{{ today | date: 'yyyy-MM-dd'}}"/>
+                <small *ngIf="registerForm.get('dob')?.touched && registerForm.get('dob')?.hasError('required')">
+            Date of Birth is required.
+          </small>
+          <small *ngIf="registerForm.get('dob')?.touched && registerForm.get('dob')?.hasError('pastDate')">
+            Date of Birth must be in past.
+          </small>
+          <small *ngIf="registerForm.get('dob')?.touched && registerForm.get('dob')?.hasError('underage')">
+            You must be at least 18 years old to register.
+          </small>
+        </div>
+
+        <!-- Email -->
+        <div>
+        <label for="email">Email id:</label>
+        <input type="email" formControlName="email" placeholder="Email" />
+          <small *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')">
+            Email is required.
+          </small>
+          <small *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')">
+            Please enter a valid email.
+          </small>
+        </div>
+          
+      
+        <!-- Phone number -->  
+       <div>
+                <label for="phone">Phone No:</label>
+                <input type="text" formControlName="phone" placeholder="Contact Number" maxlength="10"/>
+          <small *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('required')">
+            Contact number is required.
+          </small>
+          <small *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('pattern')">
+            Enter a valid 10-digit number.
+          </small>
+       </div>
+          
+       <!-- Username -->
+       <div>
+        <label for="username">Username:</label>
+        <input id="username" type="text" formControlName="username" placeholder="Username" />
+        <small *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.hasError('required')">
+          Username is required.
+        </small>
+        </div>
+
+        <!-- Password -->
+        <div>
+        <label for="password">Password:</label>
+                <input  id="password" type="password" formControlName="password" placeholder="Password" />
+                <small *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')">
+                Password is required.
+                </small>
+                <small *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minlength')">
+                Password must be at least 6 characters long.
+                </small>                
+        </div>
+
+        <!-- Confirm Password -->
+        <div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm Password" />
+        <small *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.hasError('required')">
+          Confirm Password is required.
+        </small>
+        <small *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched">
+          Passwords do not match.
+        </small>                
+        </div>
+
+        <!-- Address -->
+        <div>
+                <label for="address">Address:</label>
+                <textarea id="address" formControlName="address"></textarea>
+                <small *ngIf="registerForm.get('address')?.touched && registerForm.get('address')?.hasError('required')">
+                Address is required.
+                </small>     
+        </div>
+
+        
+<!-- CardType -->
+ <div class="form-group card-type">
+<label>Card Type:</label>
+<label class="radio-container">
+ <input type="radio" value="GOLD" formControlName="cardType"> Gold
+ <span class="checkmark"></span>
+</label>
+<label class="radio-container">
+ <input type="radio" value="TITANIUM" formControlName="cardType"> Titanium
+ <span class="checkmark"></span>
+</label>
+  <small *ngIf="registerForm.get('cardType')?.touched && registerForm.get('cardType')?.hasError('required')">
+  
+Please select a card type.
+</small>
 </div>
 
- <!-- Back Button -->
- <button class="btn-back" routerLink="/">BACK TO HOME</button>
+
+
+        <!-- CardType -->
+        <!-- <div>
+                <label>Card Type:</label>
+                <label><input type="radio" value="GOLD" formControlName="cardType">--Gold</label>
+                <label><input type="radio" value="TITANIUM" formControlName="cardType">--Titanium</label>
+                <small *ngIf="registerForm.get('cardType')?.touched && registerForm.get('cardType')?.hasError('required')">Please select a card Type</small>
+        </div> -->
+
+
+        <!-- Bank -->
+         <div>
+                <label for="bank">Select Bank:</label>
+                <select id="bank" formControlName="bankName">
+                        <option value="">Select Bank--</option>
+                        <option value="HDFC">HDFC Bank</option>
+                        <option value="ICICI">ICICI Bank--</option>
+                        <option value="Canara">Canara Bank</option>
+                        <option value="ISBC">ISBC Bank</option>
+                        <option value="SBI">SBI Bank</option>
+                </select>
+                <small *ngIf="registerForm.get('bankName')?.touched && registerForm.get('bankName')?.hasError('required')">Bank Selection is required</small>
+         </div>
+         
+         <!-- Account Number -->
+          <div>
+                <label  for="accountNumber">Savings Account No:</label>
+                <input id="accountNumber" type="text" formControlName="accountNumber" placeholder="Enter 9 to 18 digits account Number"
+                pattern="^[0-9]{9,18}">
+                <small *ngIf="registerForm.get('accountNumber')?.touched && registerForm.get('accountNumber')?.hasError('required')">Account Number is required</small>
+                <small *ngIf="registerForm.get('accountNumber')?.touched && registerForm.get('accountNumber')?.hasError('pattern')">Account Number must be between 9 and 18 digits and contain only digits.</small>
+          </div>
+
+          <!-- IFSC Code -->
+          <div>
+                <label  for="ifscCode">IFSC Code:</label>
+                <input id="ifscCode" type="text" formControlName="ifscCode" placeholder="e.g. SBIN0001234"
+                pattern="^[A-Z]{4}0[A-Z0-9]{6}$">
+                <small *ngIf="registerForm.get('ifscCode')?.touched && registerForm.get('ifscCode')?.hasError('required')">IFSC Code is required</small>
+                <small *ngIf="registerForm.get('ifscCode')?.touched && registerForm.get('ifscCode')?.hasError('pattern')">Invalid IFSC Code Format (e.g. SBIN0001234)</small>
+          </div>
+
+          
+      <!-- Buttons in the same row -->
+      <div class="form-group buttons-row">
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+        <button type="button" (click)="resetForm()">Reset</button>
+      </div>
+  
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        </form>
+      </div>
